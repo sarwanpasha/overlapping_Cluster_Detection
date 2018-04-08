@@ -105,13 +105,13 @@ public class Page_Rank_Algo_To_Find_Correlation {
       ////////////////////////////////////////
       int t = 0;
       int N = Node_Count;
-      int[] inf_curr = new int[Node_Count];
-      int[] inf_next = new int[Node_Count];
+      double[] inf_curr = new double[Node_Count];
+      double[] inf_next = new double[Node_Count];
       
       for(int i=0; i<Node_Count; i++){
     	  inf_curr[i] = 1/N;
     	  double epsilon = 0.001;
-          int res = 1;
+          double res = 1;
           double c = 0.85;
           while(res > epsilon){
         	  for(int j=0; j<Node_Count; j++){
