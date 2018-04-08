@@ -1,3 +1,5 @@
+package detecting_overlappint_clusters_in_attributed_graph;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,7 +7,7 @@
  */
 
 //import com.sun.glass.ui.Size;
-import java.io.BufferedWriter;
+import java.io.BufferedWriter; 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -65,18 +67,18 @@ public class Page_Rank_Algo_To_Find_Correlation {
   static int[] a1 = new int[Node_Count];
   static int[] a2 = new int[Node_Count];
 //  static int[] Hidden_Users = { 7, 9, 11, 13, 684,704, 712, 725,  743,  751};
-  static int[] Hidden_Users = IntStream.rangeClosed(1, Node_Count).toArray();
+//  static int[] Hidden_Users = IntStream.rangeClosed(1, Node_Count).toArray();
   
 
 //static int[] Hidden_Users = IntStream.rangeClosed(1,100).toArray();
 
 //  static int[] Hidden_Users_range = IntStream.rangeClosed(1, 769).toArray();
-  static int Hidden_Count = Hidden_Users.length;
+//  static int Hidden_Count = Hidden_Users.length;
 
-  static String[] Bin_Distribution_Array=new String[Hidden_Count];
+//  static String[] Bin_Distribution_Array=new String[Hidden_Count];
   static String[] Global_unique_Occurences;
-  static int[] Global_a1=new int[Hidden_Count];
-  static int[] Global_a2=new int[Hidden_Count];
+//  static int[] Global_a1=new int[Hidden_Count];
+//  static int[] Global_a2=new int[Hidden_Count];
   
   static int success = 0;
   static int failure = 0;
@@ -86,9 +88,8 @@ public class Page_Rank_Algo_To_Find_Correlation {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-//      Graph G = new Graph("E:\\MS Computer Science\\MS Thesis\\Java Code\\thesis1\\src\\thesis1\\cl.txt");
+//      Graph G = new Graph(Path);
       Graph G = new Graph(Path);
-
       int numNodes = G.V();
       int numEdges = G.E();
       System.out.println("Number of vertices in G " + numNodes + "  " + (numEdges / 2));
@@ -120,7 +121,7 @@ public class Page_Rank_Algo_To_Find_Correlation {
         		  //Computing friends of jth node
         		  ArrayList Immediate_friends = new ArrayList();
         		// Immediate Friends of Node 3 (Hidden Node) -> y1, y2, ...
-        		  Immediate_friends = Friend_Finder((Hidden_Users[i])); 
+        		  Immediate_friends = Friend_Finder(j); 
         		  Collections.sort(Immediate_friends);
         		  for(int k=0; k<Immediate_friends.size(); k++){
         			  inf_next[j] = inf_curr[j] + inf_curr[k] * (1/Immediate_friends.size());
@@ -155,7 +156,7 @@ public class Page_Rank_Algo_To_Find_Correlation {
             }
         }
 //        System.out.println("Contents of friends: " + friends);
-        Set<String> hs = (Set<String>) new HashMap<>();
+        Set<String> hs = new HashSet<>();
         hs.addAll(friends);
         friends.clear();
         friends.addAll(hs);

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-//package thesis1;
+package detecting_overlappint_clusters_in_attributed_graph;
 /*************************************************************************
  *  Compilation:  javac Stack.java
  *  Execution:    java Stack < input.txt

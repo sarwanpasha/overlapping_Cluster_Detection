@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package detecting_overlappint_clusters_in_attributed_graph;
 
 import java.io.BufferedWriter;
 import java.io.File;
