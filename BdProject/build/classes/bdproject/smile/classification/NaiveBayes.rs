@@ -1,3 +1,0 @@
-smile.classification.NaiveBayes$Model
-smile.classification.NaiveBayes
-smile.classification.NaiveBayes$Trainer

@@ -1,4 +1,0 @@
-smile.stat.distribution.HyperGeometricDistribution$RandomNumberGenerator
-smile.stat.distribution.HyperGeometricDistribution$Patchwork
-smile.stat.distribution.HyperGeometricDistribution$Inversion
-smile.stat.distribution.HyperGeometricDistribution

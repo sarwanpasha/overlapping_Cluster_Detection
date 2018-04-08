@@ -1,1 +1,0 @@
-smile.math.kernel.SparseLinearKernel

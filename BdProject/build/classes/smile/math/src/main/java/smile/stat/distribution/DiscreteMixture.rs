@@ -1,2 +1,0 @@
-smile.stat.distribution.DiscreteMixture
-smile.stat.distribution.DiscreteMixture$Component

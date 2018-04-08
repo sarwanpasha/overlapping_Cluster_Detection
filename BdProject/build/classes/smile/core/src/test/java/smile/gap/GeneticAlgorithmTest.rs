@@ -1,2 +1,0 @@
-smile.gap.GeneticAlgorithmTest$Knapnack
-smile.gap.GeneticAlgorithmTest

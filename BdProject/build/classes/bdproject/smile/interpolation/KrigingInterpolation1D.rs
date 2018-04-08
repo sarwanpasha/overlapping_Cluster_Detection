@@ -1,1 +1,0 @@
-smile.interpolation.KrigingInterpolation1D

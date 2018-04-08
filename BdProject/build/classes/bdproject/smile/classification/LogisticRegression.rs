@@ -1,8 +1,0 @@
-smile.classification.LogisticRegression$Trainer
-smile.classification.LogisticRegression$MultiClassObjectiveFunction$FTask
-smile.classification.LogisticRegression
-smile.classification.LogisticRegression$BinaryObjectiveFunction$FTask
-smile.classification.LogisticRegression$BinaryObjectiveFunction
-smile.classification.LogisticRegression$BinaryObjectiveFunction$GTask
-smile.classification.LogisticRegression$MultiClassObjectiveFunction
-smile.classification.LogisticRegression$MultiClassObjectiveFunction$GTask

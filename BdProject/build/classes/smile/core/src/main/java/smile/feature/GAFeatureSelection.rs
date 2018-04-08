@@ -1,3 +1,0 @@
-smile.feature.GAFeatureSelection$RegressionFitness
-smile.feature.GAFeatureSelection$ClassificationFitness
-smile.feature.GAFeatureSelection

@@ -1,2 +1,0 @@
-smile.stat.distribution.MultivariateMixture$Component
-smile.stat.distribution.MultivariateMixture

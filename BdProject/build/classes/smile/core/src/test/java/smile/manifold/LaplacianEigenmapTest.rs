@@ -1,1 +1,0 @@
-smile.manifold.LaplacianEigenmapTest

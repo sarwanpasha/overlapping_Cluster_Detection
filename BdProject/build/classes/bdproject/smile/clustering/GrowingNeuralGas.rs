@@ -1,4 +1,0 @@
-smile.clustering.GrowingNeuralGas
-smile.clustering.GrowingNeuralGas$Neuron
-smile.clustering.GrowingNeuralGas$Edge
-smile.clustering.GrowingNeuralGas$Node

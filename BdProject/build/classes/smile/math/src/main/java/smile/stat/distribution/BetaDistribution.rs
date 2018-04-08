@@ -1,2 +1,0 @@
-smile.stat.distribution.BetaDistribution$RejectionLogLogistic
-smile.stat.distribution.BetaDistribution

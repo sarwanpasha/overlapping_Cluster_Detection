@@ -1,5 +1,0 @@
-smile.classification.NeuralNetwork
-smile.classification.NeuralNetwork$Trainer
-smile.classification.NeuralNetwork$ActivationFunction
-smile.classification.NeuralNetwork$Layer
-smile.classification.NeuralNetwork$ErrorFunction

@@ -1,1 +1,0 @@
-smile.swing.table.ShortArrayCellRenderer

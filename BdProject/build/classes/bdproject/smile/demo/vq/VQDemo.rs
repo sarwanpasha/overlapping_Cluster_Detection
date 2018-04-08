@@ -1,1 +1,0 @@
-smile.demo.vq.VQDemo

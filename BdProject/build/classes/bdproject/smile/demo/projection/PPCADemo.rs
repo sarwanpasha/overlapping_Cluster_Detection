@@ -1,1 +1,0 @@
-smile.demo.projection.PPCADemo

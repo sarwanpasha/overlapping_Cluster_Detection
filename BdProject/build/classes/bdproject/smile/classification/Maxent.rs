@@ -1,8 +1,0 @@
-smile.classification.Maxent
-smile.classification.Maxent$Trainer
-smile.classification.Maxent$BinaryObjectiveFunction
-smile.classification.Maxent$MultiClassObjectiveFunction$FTask
-smile.classification.Maxent$MultiClassObjectiveFunction$GTask
-smile.classification.Maxent$MultiClassObjectiveFunction
-smile.classification.Maxent$BinaryObjectiveFunction$GTask
-smile.classification.Maxent$BinaryObjectiveFunction$FTask
