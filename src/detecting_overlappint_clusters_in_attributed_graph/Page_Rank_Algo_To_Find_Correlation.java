@@ -124,7 +124,7 @@ public class Page_Rank_Algo_To_Find_Correlation {
         		  Immediate_friends = Friend_Finder(j); 
         		  Collections.sort(Immediate_friends);
         		  for(int k=0; k<Immediate_friends.size(); k++){
-        			  inf_next[j] = inf_curr[j] + inf_curr[k] * (1/Immediate_friends.size());
+        			  inf_next[j] = inf_curr[j] + inf_curr[Immediate_friends[k]] * (1/Immediate_friends.size());
         		  }
         	  }
         	  for(int j=0; j<Node_Count; j++){
