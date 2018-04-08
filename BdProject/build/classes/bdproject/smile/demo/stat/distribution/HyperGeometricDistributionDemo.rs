@@ -1,0 +1,1 @@
+smile.demo.stat.distribution.HyperGeometricDistributionDemo

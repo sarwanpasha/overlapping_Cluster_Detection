@@ -1,0 +1,1 @@
+smile.interpolation.ShepardInterpolation1D

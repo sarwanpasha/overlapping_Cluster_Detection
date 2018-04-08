@@ -1,0 +1,4 @@
+smile.stat.distribution.PoissonDistribution
+smile.stat.distribution.PoissonDistribution$ModeSearch
+smile.stat.distribution.PoissonDistribution$Patchwork
+smile.stat.distribution.PoissonDistribution$RandomNumberGenerator

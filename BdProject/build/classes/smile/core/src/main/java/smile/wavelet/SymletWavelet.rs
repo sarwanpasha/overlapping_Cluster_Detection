@@ -1,0 +1,1 @@
+smile.wavelet.SymletWavelet

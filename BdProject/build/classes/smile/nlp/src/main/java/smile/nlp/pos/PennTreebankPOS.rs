@@ -1,0 +1,10 @@
+smile.nlp.pos.PennTreebankPOS$3
+smile.nlp.pos.PennTreebankPOS$4
+smile.nlp.pos.PennTreebankPOS$5
+smile.nlp.pos.PennTreebankPOS$6
+smile.nlp.pos.PennTreebankPOS$7
+smile.nlp.pos.PennTreebankPOS$8
+smile.nlp.pos.PennTreebankPOS$9
+smile.nlp.pos.PennTreebankPOS
+smile.nlp.pos.PennTreebankPOS$1
+smile.nlp.pos.PennTreebankPOS$2

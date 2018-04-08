@@ -1,0 +1,1 @@
+smile.nlp.normalizer.SimpleNormalizer

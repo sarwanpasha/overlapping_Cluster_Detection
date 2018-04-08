@@ -1,0 +1,2 @@
+smile.classification.RBFNetwork$Trainer
+smile.classification.RBFNetwork

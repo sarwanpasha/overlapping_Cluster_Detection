@@ -1,0 +1,2 @@
+smile.regression.GaussianProcessRegression$Trainer
+smile.regression.GaussianProcessRegression

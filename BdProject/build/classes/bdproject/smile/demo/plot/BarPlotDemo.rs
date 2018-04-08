@@ -1,0 +1,1 @@
+smile.demo.plot.BarPlotDemo

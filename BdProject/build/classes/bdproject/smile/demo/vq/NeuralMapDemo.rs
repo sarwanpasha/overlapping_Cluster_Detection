@@ -1,0 +1,1 @@
+smile.demo.vq.NeuralMapDemo

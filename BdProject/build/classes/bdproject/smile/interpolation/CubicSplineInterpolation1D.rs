@@ -1,0 +1,1 @@
+smile.interpolation.CubicSplineInterpolation1D

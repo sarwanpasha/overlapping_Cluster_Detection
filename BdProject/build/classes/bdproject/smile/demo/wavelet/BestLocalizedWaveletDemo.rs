@@ -1,0 +1,1 @@
+smile.demo.wavelet.BestLocalizedWaveletDemo
