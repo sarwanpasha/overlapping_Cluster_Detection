@@ -105,13 +105,13 @@ public class Page_Rank_Algo_To_Find_Correlation {
       ////////////////////////////////////////
       int t = 0;
       int N = Node_Count;
-      int[] inf_curr = new int[Node_Count];
-      int[] inf_next = new int[Node_Count];
+      double[] inf_curr = new double[Node_Count];
+      double[] inf_next = new double[Node_Count];
       
       for(int i=0; i<Node_Count; i++){
     	  inf_curr[i] = 1/N;
     	  double epsilon = 0.001;
-          int res = 1;
+          double res = 1;
           double c = 0.85;
           while(res > epsilon){
         	  for(int j=0; j<Node_Count; j++){
@@ -124,7 +124,7 @@ public class Page_Rank_Algo_To_Find_Correlation {
         		  Immediate_friends = Friend_Finder(j); 
         		  Collections.sort(Immediate_friends);
         		  for(int k=0; k<Immediate_friends.size(); k++){
-        			  inf_next[j] = inf_curr[j] + inf_curr[k] * (1/Immediate_friends.size());
+        			  inf_next[j] = inf_curr[j] + inf_curr[Integer.parseInt(Immediate_friends.get(k).toString())] * (1/Immediate_friends.size());
         		  }
         	  }
         	  for(int j=0; j<Node_Count; j++){
