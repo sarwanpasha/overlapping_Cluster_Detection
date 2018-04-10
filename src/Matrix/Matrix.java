@@ -9,7 +9,7 @@ public class Matrix {
         
     public double[][] print_Matrix(Matrix B) {
 //        Matrix A = this;
-//        if (B.nrows != A.nrows || B.ncols != A.ncols) throw new RuntimeException("Illegal matrix dimensions.");
+//        if (B.nrows != A.nrMatrix =ows || B.ncols != A.ncols) throw new RuntimeException("Illegal matrix dimensions.");
 //        for (int i = 0; i < nrows; i++)
 //        {
 //            for (int j = 0; j < ncols; j++)
