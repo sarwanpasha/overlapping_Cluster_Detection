@@ -129,27 +129,38 @@ public class Page_Rank_Algo_To_Find_Correlation {
         		  Collections.sort(Immediate_friends);
 //                          System.err.println("Immediate_friends" + Immediate_friends);
         		  for(int k=0; k<Immediate_friends.size(); k++){
-        			  inf_next[j] = inf_curr[j] + 
-                                          inf_curr[Integer.parseInt(Immediate_friends.get(k).toString())] * 
-                                          (1/Immediate_friends.size());
-//                                  System.err.println("Immediate_friends = " + Immediate_friends.size());
-//                                  System.err.println("inf_curr j = " + inf_curr[j]);
-//                                  System.err.println("inf_curr k = " + inf_curr[k]);
+//                              System.err.println("Immediate_friends  = " + Immediate_friends.get(k).toString());
+                                double temp_2 = (double)1/Immediate_friends.size();
+        			  inf_next[j] = inf_next[j] + 
+                                          inf_curr[Integer.parseInt(Immediate_friends.get(k).toString())-1] * 
+                                          (temp_2);
+//                                  System.err.println("test j = " +  inf_curr[Integer.parseInt(Immediate_friends.get(k).toString())-1]
+//                                   + " -- = " + temp_2);
+//                                  System.err.println("inf_curr = " + inf_next[j]);
         		  }
         	  }
                   
         	  for(int j=0; j<Node_Count; j++){
-        		  inf_next[j] = (int) (c * inf_next[j] + (1 - c) * (1/N));
+        		  inf_next[j] = (double) (c * inf_next[j] + (1 - c) * (1/N));
+//                          System.err.println("inf_next = " + inf_next[j]);
         	  }
+                   double sum=0;
+                  for(int y=0; y<Node_Count; y++){
+        	  sum = sum + Math.abs(inf_curr[y] - inf_next[y]);
+        	  inf_curr[y] = inf_next[y];
+                  }
+                  System.err.println("sum = " + sum);
+                  res = sum;
                   
-        	  res = Math.abs(inf_curr[1] - inf_next[1]);
-        	  inf_curr[1] = inf_next[1];
+//                  for(int y=0; y<Node_Count; y++){
+//                      System.err.println("inf_curr!! = " + inf_curr[y]);
+//                  }
         	  //t++;
 //                  }
         }
       
       for(int p=0;p<Node_Count;p++){
-          System.err.println("inf_next " + p + " = " + inf_curr[p]);
+          System.err.println("inf_curr " + p + " = " + inf_curr[p]);
       }
       ////////////////////////////////////////
       //Page rank algo logic Ends Here!!!
