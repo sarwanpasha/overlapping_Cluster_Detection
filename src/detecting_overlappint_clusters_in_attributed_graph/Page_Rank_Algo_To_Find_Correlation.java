@@ -100,8 +100,74 @@ public class Page_Rank_Algo_To_Find_Correlation {
 //         System.out.println("Edge List = " + edgeList);
       String temp = G.toString();
 //         System.out.println(temp);
+        double[] inf_curr = new double[Node_Count];
+        inf_curr = PageRank();
+        
+//        for(int p=0;p<Node_Count;p++){
+//          System.err.println("inf_curr " + p + " = " + inf_curr[p]);
+//      }
+        SCD(inf_curr);
 
-      ////////////////////////////////////////
+      
+	}
+        
+    	public static void SCD(double[]inf_current){
+//		Graph G = new Graph(Path);
+//		edgeList_Array = G.get_edgeList_Array();
+		int[] visited = new int[Node_Count];
+		double[][] SCD_Matrix = new double[Node_Count][Node_Count];
+		ArrayList Immediate_friends = new ArrayList();
+		ArrayList Immediate_friends_2 = new ArrayList();
+		ArrayList Immediate_friends_3 = new ArrayList();
+		for(int i=0; i<Node_Count; i++){
+			double x=0;
+			 //Computing friends of jth node
+  		  
+  		// Immediate Friends of Node 3 (Hidden Node) -> y1, y2, ...
+  		  Immediate_friends = Friend_Finder(i); 
+  		  Collections.sort(Immediate_friends);
+			for(int j=0; j<Immediate_friends.size(); j++){
+				int temp_size = (int) Immediate_friends.get(j);
+				x = x + inf_current[temp_size];
+				x = Math.sqrt(x);
+			}
+			int[] temp_1 = new int[1];
+			temp_1[0] = i;
+			
+			for(int j=0; j<Node_Count; j++){
+				boolean j_in_Visited_Array = contains(visited,j);
+				double y = 0;
+				if(!(j==i) && j_in_Visited_Array==false){
+					
+					//Computing friends of jth node
+			  		 
+			  		// Immediate Friends of Node 3 (Hidden Node) -> y1, y2, ...
+			  		Immediate_friends_2 = Friend_Finder(j); 
+			  		  Collections.sort(Immediate_friends_2);
+					for(int k=0; k<Immediate_friends_2.size(); k++){
+						y = y + inf_current[(int) Immediate_friends_2.get(k)];
+						y = Math.sqrt(y);
+					}     
+					
+					double z=0;
+					Immediate_friends_3 = (ArrayList) intersection(Immediate_friends,Immediate_friends_2);
+//					System.err.println("Immediate_friends_3 = " + Immediate_friends_3);
+                                        for(int k=0; k<Immediate_friends_3.size(); k++){
+                                            int temp = (int) Immediate_friends_3.get(k);
+//                                            System.err.println("inf_current = " + temp);
+                                            double temp_2 = (double)inf_current[temp];
+						z = z + temp_2;
+					}
+					SCD_Matrix[i][j] = (int) (z / (x * y));
+				}
+			}
+		visited[i] = i;	
+		}
+	}
+        
+        
+        public static double[] PageRank(){
+                  ////////////////////////////////////////
       //Page rank algo logic Starts Here
       ////////////////////////////////////////
       //int t = 0;
@@ -127,7 +193,7 @@ public class Page_Rank_Algo_To_Find_Correlation {
         		// Immediate Friends of Node 3 (Hidden Node) -> y1, y2, ...
         		  Immediate_friends = Friend_Finder(j); 
         		  Collections.sort(Immediate_friends);
-                          System.err.println("Immediate_friends" + Immediate_friends);
+//                          System.err.println("Immediate_friends" + Immediate_friends);
         		  for(int k=1; k<Immediate_friends.size(); k++){
 //                              System.err.println("Immediate_friends  = " + Immediate_friends.get(k).toString());
                                 double temp_2 = (double)1/Immediate_friends.size();
@@ -149,7 +215,7 @@ public class Page_Rank_Algo_To_Find_Correlation {
         	  sum = sum + Math.abs(inf_curr[y] - inf_next[y]);
         	  inf_curr[y] = inf_next[y];
                   }
-                  System.err.println("sum = " + sum);
+//                  System.err.println("sum = " + sum);
                   res = sum;
                   
 //                  for(int y=0; y<Node_Count; y++){
@@ -159,14 +225,62 @@ public class Page_Rank_Algo_To_Find_Correlation {
 //                  }
         }
       
-      for(int p=0;p<Node_Count;p++){
-          System.err.println("inf_curr " + p + " = " + inf_curr[p]);
-      }
+//      for(int p=0;p<Node_Count;p++){
+//          System.err.println("inf_curr " + p + " = " + inf_curr[p]);
+//      }
       ////////////////////////////////////////
       //Page rank algo logic Ends Here!!!
       ////////////////////////////////////////
-	}
+      return inf_curr;
+        }
+        
+        
+
 	
+	   public static <T> List<T> intersection(List<T> list1, List<T> list2) {
+	        List<T> list = new ArrayList<T>();
+
+	        for (T t : list1) {
+	            if(list2.contains(t)) {
+	                list.add(t);
+	            }
+	        }
+
+	        return list;
+	    }
+	public static boolean contains(int[] arr, int targetValue) {
+	    for(int s: arr){
+	        if(s == targetValue)
+	            return true;
+	    }
+	    return false;
+	}
+    /* Union of multiple arrays */
+    public static int[] unionArrays(int[]... arrays)
+    {
+        int maxSize = 0;
+        int counter = 0;
+
+        for(int[] array : arrays) maxSize += array.length;
+        int[] accumulator = new int[maxSize];
+
+        for(int[] array : arrays)
+            for(int i : array)
+                if(!isDuplicated(accumulator, counter, i))
+                    accumulator[counter++] = i;
+
+        int[] result = new int[counter];
+        for(int i = 0; i < counter; i++) result[i] = accumulator[i];
+
+        return result;
+    }
+
+    public static boolean isDuplicated(int[] array, int counter, int value)
+    {
+        for(int i = 0; i < counter; i++) if(array[i] == value) return true;
+        return false;
+    }
+    
     public static ArrayList Friend_Finder(int Hidden_Node) {
         //        Hidden_Users;
 //            int[] friends;
