@@ -129,8 +129,9 @@ public class Page_Rank_Algo_To_Find_Correlation {
 			for(int j=0; j<Immediate_friends.size(); j++){
 				int temp_size = (int) Immediate_friends.get(j);
 				x = x + inf_current[temp_size];
-				x = Math.sqrt(x);
+				
 			}
+			x = Math.sqrt(x);
 			int[] temp_1 = new int[1];
 			temp_1[0] = i;
 			
@@ -146,8 +147,8 @@ public class Page_Rank_Algo_To_Find_Correlation {
 			  		  Collections.sort(Immediate_friends_2);
 					for(int k=0; k<Immediate_friends_2.size(); k++){
 						y = y + inf_current[(int) Immediate_friends_2.get(k)];
-						y = Math.sqrt(y);
 					}     
+					y = Math.sqrt(y);
 					
 					double z=0;
 					Immediate_friends_3 = (ArrayList) intersection(Immediate_friends,Immediate_friends_2);
@@ -158,10 +159,11 @@ public class Page_Rank_Algo_To_Find_Correlation {
                                             double temp_2 = (double)inf_current[temp];
 						z = z + temp_2;
 					}
-					SCD_Matrix[i][j] = (int) (z / (x * y));
+					SCD_Matrix[i][j] = (double) (z / (x * y));
 				}
 			}
 		visited[i] = i;	
+
 		}
 	}
         
