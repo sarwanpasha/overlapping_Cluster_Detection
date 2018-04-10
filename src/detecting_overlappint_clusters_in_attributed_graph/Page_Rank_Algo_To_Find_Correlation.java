@@ -29,8 +29,8 @@ import static oracle.jrockit.jfr.events.Bits.intValue;
 public class Page_Rank_Algo_To_Find_Correlation {
 
   //Caltech Dataest
-  static int Node_Count = 10;
-  static int edgeList_Array_Count = 11;
+  static int Node_Count = 12;
+  static int edgeList_Array_Count = 38;
   //Caltech Dataest
 
 //   //Rice Dataest
@@ -109,7 +109,7 @@ public class Page_Rank_Algo_To_Find_Correlation {
       double[] inf_curr = new double[Node_Count];
       double[] inf_next = new double[Node_Count];
       
-      for(int i=0; i<Node_Count; i++){
+      for(int i=1; i<Node_Count; i++){
     	  inf_curr[i] = 1/N;
           
 //          System.err.println("inf_curr = " + inf_curr[i] + " N = " + N);
@@ -118,17 +118,17 @@ public class Page_Rank_Algo_To_Find_Correlation {
           double res = 1;
           double c = 0.85;
           while(res > epsilon){
-        	  for(int j=0; j<Node_Count; j++){
+        	  for(int j=1; j<Node_Count; j++){
         		  inf_next[j] = 0;
         	  }
-        	  for(int j=0; j<Node_Count; j++){
+        	  for(int j=1; j<Node_Count; j++){
         		  //Computing friends of jth node
         		  ArrayList Immediate_friends = new ArrayList();
         		// Immediate Friends of Node 3 (Hidden Node) -> y1, y2, ...
         		  Immediate_friends = Friend_Finder(j); 
         		  Collections.sort(Immediate_friends);
-//                          System.err.println("Immediate_friends" + Immediate_friends);
-        		  for(int k=0; k<Immediate_friends.size(); k++){
+                          System.err.println("Immediate_friends" + Immediate_friends);
+        		  for(int k=1; k<Immediate_friends.size(); k++){
 //                              System.err.println("Immediate_friends  = " + Immediate_friends.get(k).toString());
                                 double temp_2 = (double)1/Immediate_friends.size();
         			  inf_next[j] = inf_next[j] + 
@@ -140,12 +140,12 @@ public class Page_Rank_Algo_To_Find_Correlation {
         		  }
         	  }
                   
-        	  for(int j=0; j<Node_Count; j++){
+        	  for(int j=1; j<Node_Count; j++){
         		  inf_next[j] = (double) (c * inf_next[j] + (1 - c) * (1/N));
 //                          System.err.println("inf_next = " + inf_next[j]);
         	  }
                    double sum=0;
-                  for(int y=0; y<Node_Count; y++){
+                  for(int y=1; y<Node_Count; y++){
         	  sum = sum + Math.abs(inf_curr[y] - inf_next[y]);
         	  inf_curr[y] = inf_next[y];
                   }
@@ -192,4 +192,3 @@ public class Page_Rank_Algo_To_Find_Correlation {
         return friends;
     }
 }
- 
