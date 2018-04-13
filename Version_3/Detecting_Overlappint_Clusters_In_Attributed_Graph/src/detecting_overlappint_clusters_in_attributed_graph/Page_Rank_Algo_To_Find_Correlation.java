@@ -35,64 +35,29 @@ public class Page_Rank_Algo_To_Find_Correlation {
   static int Node_Count = 12;
   static int edgeList_Array_Count = 38;
   //Caltech Dataest
-static int attribute_Count = 7;
+  static int attribute_Count = 7;
 
-//   //Rice Dataest
-//  static int Node_Count = 4088;
-//  static int edgeList_Array_Count = 369657;
-//  //Rice Dataest
-  
-//       //American75 Dataest
-//  static int Node_Count = 6387;
-//  static int edgeList_Array_Count = 435325;
-//  //American75 Dataest
-  //
-//  static int Node_Count = 6;
-//  static int edgeList_Array_Count = 6;
-////  //
+
 //  //caltech Dataset Attributed Matrix Path
   static String attribute_Path = "E:\\MS Computer Science\\4rth Semester\\Big Data\\Project\\JavaCode\\Detecting_Overlappint_Clusters_In_Attributed_Graph\\src\\detecting_overlappint_clusters_in_attributed_graph\\caltech_attributes.txt";
 //  //caltech Dataset Edge list path
   static String Path = "E:\\MS Computer Science\\4rth Semester\\Big Data\\Project\\JavaCode\\Detecting_Overlappint_Clusters_In_Attributed_Graph\\src\\detecting_overlappint_clusters_in_attributed_graph\\Caltech36_edgelist.txt";
-//   static String Path = "E:\MS Computer Science\4rth Semester\Big Data\Project\JavaCode\overlapping_Cluster_Detection\src\detecting_overlappint_clusters_in_attributed_graph\\Caltech36_edgelist.txt";
-//
-////      //Rice Dataset Attributed Matrix Path
-//  static String attribute_Path = "E:\\MS Computer Science\\MS Thesis\\Java Code\\thesis1\\src\\thesis1\\Rice_attributes.txt";
-////  //Rice Dataset Edge list path
-//  static String Path = "E:\\MS Computer Science\\MS Thesis\\Java Code\\thesis1\\src\\thesis1\\Rice31_edgelist.txt";
-////
-//          //American75 Dataset Attributed Matrix Path
-//  static String attribute_Path = "E:\\MS Computer Science\\MS Thesis\\Java Code\\thesis1\\src\\thesis1\\American75_attributes.txt";
-////  //American75 Dataset Edge list path
-//  static String Path = "E:\\MS Computer Science\\MS Thesis\\Java Code\\thesis1\\src\\thesis1\\American75_edgelist.txt";
-//  
+
   static int[][] attributeMatrix = new int[Node_Count][7];
   static int[][] edgeList_Array = new int[edgeList_Array_Count][2];
   static int[] a1 = new int[Node_Count];
   static int[] a2 = new int[Node_Count];
-//  static int[] Hidden_Users = { 7, 9, 11, 13, 684,704, 712, 725,  743,  751};
-//  static int[] Hidden_Users = IntStream.rangeClosed(1, Node_Count).toArray();
-  
 
-//static int[] Hidden_Users = IntStream.rangeClosed(1,100).toArray();
+   static String[] Global_unique_Occurences;
 
-//  static int[] Hidden_Users_range = IntStream.rangeClosed(1, 769).toArray();
-//  static int Hidden_Count = Hidden_Users.length;
-
-//  static String[] Bin_Distribution_Array=new String[Hidden_Count];
-  static String[] Global_unique_Occurences;
-//  static int[] Global_a1=new int[Hidden_Count];
-//  static int[] Global_a2=new int[Hidden_Count];
   
   static int success = 0;
   static int failure = 0;
-//  static int[] a1_new = new int[Node_Count];
-//  static int[] a2_new = new int[Node_Count];
+
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) throws NoSquareException {
-//      Graph G = new Graph(Path);
+public static void main(String[] args) throws NoSquareException {
       Graph G = new Graph(Path);
       int numNodes = G.V();
       int numEdges = G.E();
