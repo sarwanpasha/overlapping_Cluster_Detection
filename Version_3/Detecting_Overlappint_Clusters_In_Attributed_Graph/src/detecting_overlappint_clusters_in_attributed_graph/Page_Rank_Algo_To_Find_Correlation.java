@@ -7,9 +7,9 @@ package detecting_overlappint_clusters_in_attributed_graph;
  */
 
 //import com.sun.glass.ui.Size;
-import Matrix.Matrix;
-import Matrix.MatrixMathematics;
-import Matrix.NoSquareException;
+//import Matrix.Matrix;
+//import Matrix.MatrixMathematics;
+//import Matrix.NoSquareException;
 import java.io.BufferedWriter; 
 import java.io.File;
 import java.io.FileWriter;
@@ -28,6 +28,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.IntStream;
 import static oracle.jrockit.jfr.events.Bits.intValue;
+import Jama.Matrix;
+import Jama.EigenvalueDecomposition;
 
 public class Page_Rank_Algo_To_Find_Correlation {
 
@@ -91,7 +93,7 @@ static int attribute_Count = 7;
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) throws NoSquareException {
+	public static void main(String[] args) {
 //      Graph G = new Graph(Path);
       Graph G = new Graph(Path);
       int numNodes = G.V();
@@ -118,7 +120,7 @@ static int attribute_Count = 7;
       
 	}
       
-  public static void NCD(double[][] SCD_Matrix,double[][] ACD_Matrix) throws NoSquareException{
+  public static void NCD(double[][] SCD_Matrix,double[][] ACD_Matrix){
         int[] visited = new int[Node_Count];
         double alpha = 0.5;
         double[][] NCD_Matrix = new double[Node_Count][Node_Count];
@@ -137,6 +139,10 @@ static int attribute_Count = 7;
                sum = sum + NCD_Matrix[i][j];
             }
             Diagonal_Matrix_k[i][i] = 1/sum;
+            for(int k=0; k<Node_Count;k++){
+               Laplace_Matrix[i][k] =  Similarity_Matrix[i][k] * Diagonal_Matrix_k[i][i];
+            }
+//            System.err.println("sum = " + sum);
             for(int j=0; j<Node_Count; j++){
                 if(j!=i){
                     Diagonal_Matrix_k[i][j] = 0; //k
@@ -146,10 +152,49 @@ static int attribute_Count = 7;
         for(int i=0; i<Node_Count; i++){
             String temp_3="";
            for(int j=0; j<Node_Count; j++){
-               temp_3 = temp_3 + " " +  Diagonal_Matrix_k[i][j];
-           } 
-           System.err.println("Diagonal_Matrix_k[i][j] = " + temp_3);
+               temp_3 = temp_3 + " " +  Laplace_Matrix[i][j];
+           }
+           System.err.println("Laplace_Matrix[i][j] = " + temp_3);
         }
+        ///////////////////////////////////////
+        // Eigen Value Logic Start Here
+        ///////////////////////////////////////
+//         double [][] values_Inverse = new double[12][12];
+//         Matrix mat = new Matrix(Laplace_Matrix); //Initialize matrix size
+//         Matrix mat2 = new Matrix(12, 12);
+//         mat2 = mat.array_To_Matrix();
+         Matrix eigen_Matrix = new Matrix(Laplace_Matrix);
+         int row_Dimention = eigen_Matrix.getRowDimension();
+         int Column_Dimention = eigen_Matrix.getColumnDimension();
+         Eigenvalues a = new Eigenvalues(row_Dimention,Column_Dimention);
+         double[][] Eigen_Vector = new double[row_Dimention][Column_Dimention];
+         Eigen_Vector = a.Compute_Eigen_values(eigen_Matrix);
+         
+         //Display Eigen vector!!!
+//         for(int u=0;u<row_Dimention; u++){
+//             String temp = "";
+//            for(int y=0;y<row_Dimention; y++){
+//                temp = temp + Eigen_Vector[u][y] + " ";
+//            } 
+//             System.err.println("Eigen_Vector = " + temp);
+//         }
+         
+         double[][] Eigen_Values = new double[row_Dimention][Column_Dimention];
+         double[] Eigen_Values_array = new double[row_Dimention];
+         Eigen_Values = a.get_Eigen_Value_Matrix();
+          //Display Eigen Values!!!
+         for(int u=0;u<row_Dimention; u++){
+             String temp = "";
+            for(int y=0;y<row_Dimention; y++){
+                temp = temp + Eigen_Values[u][y] + " ";
+            } 
+            Eigen_Values_array[u] = Eigen_Values[u][u];
+             System.err.println("Eigen_Values_array = " + Eigen_Values_array[u]);
+         }
+        ///////////////////////////////////////
+        // Eigen Value Logic Start Here
+        ///////////////////////////////////////
+
         ///////////////////////////////////////
         // Matrix Inverse Logic Start Here
         ///////////////////////////////////////
@@ -195,30 +240,30 @@ static int attribute_Count = 7;
 //                }
 //            }
 //        }
-        double[][] K_Diagonal_Matrix = new double[Node_Count][Node_Count];
-        double[][] K_Diagonal_Matrix_Inverse = new double[Node_Count][Node_Count];
-        double[] rowsum_Complete = new double[Node_Count];
-        for(int i=0; i<Node_Count; i++){
-            String temp_3="";
-            double rowsum=0;
-           for(int j=0; j<Node_Count; j++){
-               temp_3 = temp_3 + " " +  NCD_Matrix[i][j];
-               rowsum = rowsum + NCD_Matrix[i][j];
-           } 
-           rowsum_Complete[i] = rowsum;
-//           System.err.println("NCD_Matrix[i][j] = " + temp_3);
-        }
-        for(int i=0; i<Node_Count; i++){
-            K_Diagonal_Matrix[i][i] = rowsum_Complete[i];
-//            System.err.println("K_Diagonal_Matrix = ");
-        }
-        for(int i=0; i<Node_Count; i++){
-            String temp_3="";
-           for(int j=0; j<Node_Count; j++){
-               temp_3 = temp_3 + " " +  K_Diagonal_Matrix[i][j];
-           } 
-           System.err.println("K_Diagonal_Matrix[i][j] = " + temp_3);
-        }
+//        double[][] K_Diagonal_Matrix = new double[Node_Count][Node_Count];
+//        double[][] K_Diagonal_Matrix_Inverse = new double[Node_Count][Node_Count];
+//        double[] rowsum_Complete = new double[Node_Count];
+//        for(int i=0; i<Node_Count; i++){
+//            String temp_3="";
+//            double rowsum=0;
+//           for(int j=0; j<Node_Count; j++){
+//               temp_3 = temp_3 + " " +  NCD_Matrix[i][j];
+//               rowsum = rowsum + NCD_Matrix[i][j];
+//           } 
+//           rowsum_Complete[i] = rowsum;
+////           System.err.println("NCD_Matrix[i][j] = " + temp_3);
+//        }
+//        for(int i=0; i<Node_Count; i++){
+//            K_Diagonal_Matrix[i][i] = rowsum_Complete[i];
+////            System.err.println("K_Diagonal_Matrix = ");
+//        }
+//        for(int i=0; i<Node_Count; i++){
+//            String temp_3="";
+//           for(int j=0; j<Node_Count; j++){
+//               temp_3 = temp_3 + " " +  K_Diagonal_Matrix[i][j];
+//           } 
+//           System.err.println("K_Diagonal_Matrix[i][j] = " + temp_3);
+//        }
         
 //        Matrix mat = new Matrix(K_Diagonal_Matrix); //Initialize matrix size
 //         Matrix mat2 = new Matrix(Node_Count, Node_Count);
