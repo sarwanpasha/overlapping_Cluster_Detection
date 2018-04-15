@@ -259,7 +259,7 @@ static int cnum;
             }
             int m=2;
             double[][] U_i_j_Matrix = new double[Node_Count][cluster_Number];
-           U_i_j_Matrix =  Membership_Degree_Of_Vertex_i_And_Cluster_j(Laplace_Matrix,cluster_Number, 
+           U_i_j_Matrix =  Membership_Degree_Of_Vertex_i_And_Cluster_j(cluster_Number, 
                    centroid_i_array ,m,c_i);
             Find_Jth_Community(Node_Count,k,cluster_Number, k_Row_Vectors_new,Laplace_Matrix
             , c_i,U_i_j_Matrix);
@@ -270,7 +270,7 @@ static int cnum;
 
     }//NCD function ends here!!
  
-  static double[][] Membership_Degree_Of_Vertex_i_And_Cluster_j(double[][] Laplace_Matrix_temp, 
+  static double[][] Membership_Degree_Of_Vertex_i_And_Cluster_j( 
       int cluster_Number, double[] c_j, int m, double[] Initial_c_i){
 //      double[] Row_Avg_c_i = new double[Node_Count];
       double temp=0;
@@ -291,11 +291,23 @@ static int cnum;
               double temp_3=0;
               for (int k = 0; k < cluster_Number; k++) {
                   temp_Numerator = Math.abs(Initial_c_i[i] - c_j[j]);
+//                  System.err.println("temp_Numerator = " + temp_Numerator);
                   temp_Denumerator = Math.abs(Initial_c_i[i] - c_j[k]);
+//                  System.err.println("temp_Denumerator = " + temp_Denumerator);
+                  if(temp_Denumerator!=0){
                   temp_2 = temp_Numerator / temp_Denumerator;
+                  }
+                  else{
+                      temp_2=0;
+                  }
                   temp_3 = temp_3 + Math.pow(temp_2, temp_power);
               }
+              if(temp_3!=0){
               U_i_j_Matrix[i][j] = 1 / temp_3;
+              }
+              else{
+                  U_i_j_Matrix[i][j]=0;
+              }
               tt = tt + U_i_j_Matrix[i][j] + " ";
               
           }
@@ -339,7 +351,12 @@ static int cnum;
                 }
                 
             }
+            if(tempp_5!=0){
             Cluster_j[row] = tempp_3 / tempp_5;
+            }
+            else{
+                Cluster_j[row]=0;
+            }
                 System.err.println("Cluster_j for "+ row + " = " + Cluster_j[row]);
             
         } //Row loop ends here
