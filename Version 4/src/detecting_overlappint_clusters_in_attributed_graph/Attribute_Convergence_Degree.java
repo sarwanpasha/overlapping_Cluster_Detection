@@ -19,35 +19,13 @@ public class Attribute_Convergence_Degree {
           static int[] a2 = new int[Node_Count];
           static int attribute_Count = 7;
           static int[][] attributeMatrix = new int[Node_Count][attribute_Count];
-	//   //Rice Dataest
-	//  static int Node_Count = 4088;
-	//  static int edgeList_Array_Count = 369657;
-	//  //Rice Dataest
-	  
-//	       //American75 Dataest
-	//  static int Node_Count = 6387;
-	//  static int edgeList_Array_Count = 435325;
-	//  //American75 Dataest
-	  //
-	//  static int Node_Count = 6;
-	//  static int edgeList_Array_Count = 6;
-	////  //
+	
 	//  //caltech Dataset Attributed Matrix Path
 	  static String attribute_Path = "E:\\MS Computer Science\\MS Thesis\\Java Code\\thesis1\\src\\thesis1\\caltech_attributes.txt";
 	//  //caltech Dataset Edge list path
 	  static String Path = "E:\\MS Computer Science\\MS Thesis\\Java Code\\thesis1\\src\\thesis1\\Caltech36_edgelist2.txt";
-	//   static String Path = "E:\\MS Computer Science\\MS Thesis\\Java Code\\thesis1\\src\\thesis1\\Caltech36_edgelist.txt";
-	//
-////	      //Rice Dataset Attributed Matrix Path
-	//  static String attribute_Path = "E:\\MS Computer Science\\MS Thesis\\Java Code\\thesis1\\src\\thesis1\\Rice_attributes.txt";
-	////  //Rice Dataset Edge list path
-	//  static String Path = "E:\\MS Computer Science\\MS Thesis\\Java Code\\thesis1\\src\\thesis1\\Rice31_edgelist.txt";
-	////
-//	          //American75 Dataset Attributed Matrix Path
-	//  static String attribute_Path = "E:\\MS Computer Science\\MS Thesis\\Java Code\\thesis1\\src\\thesis1\\American75_attributes.txt";
-	////  //American75 Dataset Edge list path
-	//  static String Path = "E:\\MS Computer Science\\MS Thesis\\Java Code\\thesis1\\src\\thesis1\\American75_edgelist.txt";
-	//  
+	
+
     public static void main(String[] args) {
     // TODO Auto-generated method stub
         ACD();
@@ -62,8 +40,7 @@ public class Attribute_Convergence_Degree {
         System.out.println("Number of vertices in G " + numNodes + "  " + (numEdges / 2));
 
         ArrayList<String> edgeList = G.get_Edge_List();
-
-//           System.out.println("Edge List = " + edgeList);
+	System.out.println("Edge List = " + edgeList);
         String temp = G.toString();
         
 	edgeList_Array = G.get_edgeList_Array();
@@ -93,7 +70,9 @@ public class Attribute_Convergence_Degree {
             
         }
         
-    }
+    } 
+
+	/*   */
         public static void print_Attributes() {
         Graph G = new Graph();
         G.Read_Attributed_Graph(attribute_Path);
@@ -113,6 +92,7 @@ public class Attribute_Convergence_Degree {
 //        System.out.println(finalString);
     }
         
+/* a method to check if targetValue is contained in arr */
     static boolean contains(int[] arr, int targetValue) {
         for(int s: arr){
             if(s == targetValue)
@@ -120,5 +100,5 @@ public class Attribute_Convergence_Degree {
         }
         return false;
     }
-    
+//method contains() ends here  
 }
