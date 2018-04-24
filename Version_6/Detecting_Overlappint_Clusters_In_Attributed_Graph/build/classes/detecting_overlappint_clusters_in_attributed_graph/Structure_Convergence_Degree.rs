@@ -1,1 +1,0 @@
-Structure_Convergence_Degree
