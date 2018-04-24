@@ -895,84 +895,66 @@ double[][] U_i_j_Matrix_temp = new double[Node_Count][cluster_Number];
     }
         
         
-        
+ /* computes structure convergence degree for each pair of nodes */       
 public static double[][] SCD(double[]inf_current){
-//		Graph G = new Graph(Path);
-//		edgeList_Array = G.get_edgeList_Array();
         int[] visited = new int[Node_Count];
         double[][] SCD_Matrix = new double[Node_Count][Node_Count];
-        ArrayList Immediate_friends = new ArrayList();
-        ArrayList Immediate_friends_2 = new ArrayList();
-        ArrayList Immediate_friends_3 = new ArrayList();
+        ArrayList Immediate_friends_i = new ArrayList();
+        ArrayList Immediate_friends__j = new ArrayList();
+        ArrayList Immediate_friends_both = new ArrayList();
         for(int i=0; i<Node_Count; i++){
-//            System.err.println("i = " + i);
                 double x=0;
-                 //Computing friends of jth node
-
-        // Immediate Friends of Node 3 (Hidden Node) -> y1, y2, ...
-          Immediate_friends = Friend_Finder(i); 
-          Collections.sort(Immediate_friends);
-                for(int j=0; j<Immediate_friends.size(); j++){
-                        int temp_size = (int) Immediate_friends.get(j);
+                 //Computing friends of ith node
+          Immediate_friends_i = Friend_Finder(i); 
+          Collections.sort(Immediate_friends_i);
+                for(int j=0; j<Immediate_friends_i.size(); j++){
+                        int temp_size = (int) Immediate_friends_i.get(j);
                         x = x + inf_current[temp_size];
                 }
                 x = Math.sqrt(x);
-//                int[] temp_1 = new int[1];
-//                temp_1[0] = i;
 
                 for(int j=0; j<Node_Count; j++){
-//                    System.err.println("j = " + j);
-//                    System.err.println("visited = " + visited[j]);
                         boolean j_in_Visited_Array = contains(visited,j);
                         double y = 0;
                         if(j_in_Visited_Array==false){
-
                                 //Computing friends of jth node
-
-                                // Immediate Friends of Node 3 (Hidden Node) -> y1, y2, ...
-                                Immediate_friends_2 = Friend_Finder(j); 
-                                  Collections.sort(Immediate_friends_2);
-                                for(int k=0; k<Immediate_friends_2.size(); k++){
-                                        y = y + inf_current[(int) Immediate_friends_2.get(k)];
+                                Immediate_friends_j = Friend_Finder(j); 
+                                  Collections.sort(Immediate_friends_j);
+                                for(int k=0; k<Immediate_friends_j.size(); k++){
+                                        y = y + inf_current[(int) Immediate_friends_j.get(k)];
                                 }     
                                 y = Math.sqrt(y);
 
                                 double z=0;
-                                Immediate_friends_3 = (ArrayList) intersection(Immediate_friends,Immediate_friends_2);
+                                Immediate_friends_both = (ArrayList) intersection(Immediate_friends_i,Immediate_friends_j);
 //					System.err.println("Immediate_friends_3 = " + Immediate_friends_3);
-                                for(int k=0; k<Immediate_friends_3.size(); k++){
-                                    int temp = (int) Immediate_friends_3.get(k);
+                                for(int k=0; k<Immediate_friends_both.size(); k++){
+                                    int temp = (int) Immediate_friends_both.get(k);
 //                                            System.err.println("inf_current = " + temp);
                                     double temp_2 = (double)inf_current[temp];
                                         z = z + temp_2;
                                 }
-//                                System.err.println("0 check = " + (x * y));
-//                                System.err.println("i = " + i + " j = " + j);
-//                                if(i==j){
-//                                    System.err.println("z = " + z + " (x) =  " + x + " y = " + y);
-//                                    }
-//                                System.err.println("visited[i] = " + visited[i]);
+//                             
                                 if((x * y)!=0){
-                                    
                                 SCD_Matrix[i][j] = (double) (z / (x * y));
                                 SCD_Matrix[j][i] = (double) (z / (x * y));
                                 }
                                 else{
                                     SCD_Matrix[i][j]=0;
                                 }
-                        }
-                        	
+                        }                        	
                 }
         visited[i] = i;
         }
         
-        for(int i=0; i<Node_Count; i++){
-            String temp_3="";
-           for(int j=0; j<Node_Count; j++){
-               temp_3 = temp_3 + " " +  SCD_Matrix[i][j];
-           } 
-           System.err.println("SCD_Matrix[i][j] = " + temp_3);
-        }
+	// prints SCD matrix
+        //for(int i=0; i<Node_Count; i++){
+           // String temp_3="";
+          // for(int j=0; j<Node_Count; j++){
+            //   temp_3 = temp_3 + " " +  SCD_Matrix[i][j];
+         //  } 
+        //   System.err.println("SCD_Matrix[i][j] = " + temp_3);
+      //  }
         return SCD_Matrix;
 }
         
