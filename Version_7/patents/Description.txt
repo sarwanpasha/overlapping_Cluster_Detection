@@ -1,0 +1,11 @@
+Patent Information
+The original patent data was taken from http://www.nber.org/patents. For our graph, we used a subset of patent data from the years 1991-1995. 
+Each patent is represented as a node in the graph. Citations between patents are represented as the edges of the graph. The graph contains contains 
+100000 nodes with 5 dimensions and 188631 edges.
+
+Attributes:
+assigneecode="1.0" 
+claims="0.002" 
+patentclass="2.0" 
+year="1991.0"
+country="26.0" 
